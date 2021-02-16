@@ -95,9 +95,9 @@ sns.jointplot(data = data, x ='pc1', y = 'medv', kind = 'reg')
 data['pc1'].corr(data['medv'])
 
 
-#=========================================================================##                             CLustering                                   #
-#=========================================================================#
-
+#=========================================================================##                             
+# Clustering 
+          
 # Let's look for groups with similar tendencies through clustering
 
 del data['chas'] # remove variable 'chas' where containing categorical data
@@ -105,10 +105,7 @@ del data['chas'] # remove variable 'chas' where containing categorical data
 medv = data['medv']
 del data['medv']
 
-
-# 군집화를 진행하기에 앞서 수월한 시각화 및 설명력을 첨부하기 위하여 PCA를 통해 변수를 2개로 압축해보자.
-# 필요 라이브러리를 불러옵니다
-
+## use PCA (similar to above but we use 2 pca components this time)
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
@@ -148,9 +145,8 @@ data2 = pd.DataFrame(
 
 data2.head()
 
-
-#========================================================================## #                           kmeans                                        #
 #=========================================================================#
+#kmeans                                        
 
 from sklearn.cluster import KMeans
 
@@ -204,7 +200,7 @@ sns.barplot(x = ['group_0','group_1','group_2','group_3'],
 data['labels'] = data2['labels']
 data.head()
 
-# 각 그룹의 데이터를 나누어서 변수에 담습니다.
+# Store each group's data into variable
 group = data[(data['labels']==1) | (data['labels']==2)]
 
 group = group.groupby('labels').mean().reset_index()
@@ -213,7 +209,7 @@ group
 
 
 
-#plt.subplots(행, 열, figsize=())
+#plt.subplot
 f, ax = plt.subplots(2, 6, figsize = (20, 13))
 
 sns.barplot(x='labels', y='crim', data = group, ax = ax[0,0])
