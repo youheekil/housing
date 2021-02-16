@@ -37,4 +37,4 @@ Let's do 'Feature Selection' based on the correlation and covariance. Let's chec
 #### Clustering - `Kmeans`
 
 ---
-# 2. California Housing
+## 2. California Housing
